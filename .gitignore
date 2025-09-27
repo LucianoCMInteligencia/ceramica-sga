@@ -1,0 +1,15 @@
+﻿# Ignorar dependencias
+node_modules/
+
+# Ignorar build de producción
+build/
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignorar configuraciones de usuario
+*.log
+*.tmp
+*.swp
