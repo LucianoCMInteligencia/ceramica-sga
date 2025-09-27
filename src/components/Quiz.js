@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { preguntas } from "../data/preguntas";
 
 function shuffle(array) {
@@ -9,7 +9,8 @@ export default function Quiz() {
   const [respuestas, setRespuestas] = useState({});
   const [mostrarResultado, setMostrarResultado] = useState(false);
 
-  const preguntasAleatorias = shuffle(preguntas).slice(0, 5); // 5 preguntas por examen
+  // Barajar solo una vez al montar el componente
+  const preguntasAleatorias = useMemo(() => shuffle(preguntas).slice(0, 5), []);
 
   const manejarRespuesta = (index, opcion) => {
     setRespuestas({ ...respuestas, [index]: opcion });
@@ -37,6 +38,7 @@ export default function Quiz() {
                     type="radio"
                     name={`pregunta-${i}`}
                     value={j}
+                    checked={respuestas[i] === j}
                     onChange={() => manejarRespuesta(i, j)}
                   />
                   {op}
